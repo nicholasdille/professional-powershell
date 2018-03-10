@@ -1,0 +1,330 @@
+<!-- .slide: id="hints" -->
+
+## Hints
+
+Useful topics
+
+--
+
+<!-- .slide: id="errors" -->
+
+## Hints: Non-terminating errors
+
+Some errors do not terminate execution
+
+Force termination `-ErrorAction Stop`
+
+`Write-Error` does not terminate
+
+`throw` terminates
+
+--
+
+<!-- .slide: id="progress" -->
+
+## Hints: Progress
+
+PowerShell has an integrated progress bar controlled by `Write-Progress`:
+
+- Text-based on the console
+- Graphical in PowerShell ISE
+
+Note that you will have to calculate the percentage yourself
+
+Progress bars can be stacked using `-Id` and `-ParentId`
+
+See also progress for [jobs](#/parallelization)
+
+--
+
+<!-- .slide: id="types" -->
+
+## Hints: Custom types (1)
+
+Any hashtable converted to an object:
+
+```powershell
+PS> @{ a = 1; b = 2 }
+
+Name Value
+---- -----
+a    1
+b    2
+
+PS> [pscustomobject]@{ a = 1; b = 2 }
+
+a b
+- -
+1 2
+```
+
+Use hashtables for random access
+
+Use `pscustomobject` for arrays of objects
+
+--
+
+## Hints: Custom types (2)
+
+Use `pscustomobject` to create a named custom type
+
+```powershell
+PS> [pscustomobject]@{
+    Name = 'test'
+    PSTypeName = 'MyType'
+} | Get-Member
+
+    TypeName: MyType
+
+Name        MemberType   Definition
+----        ----------   ----------
+Equals      Method       bool Equals(System.Object obj)
+GetHashCode Method       int GetHashCode()
+GetType     Method       type GetType()
+ToString    Method       string ToString()
+Name        NoteProperty string Name=test
+```
+
+--
+
+## Hints: Custom types (3)
+
+Custom types are extended by `Add-Member`
+
+```powershell
+PS> $Item = [pscustomobject]@{ Name = 'test' }
+PS> Add-Member -InputObject $Item -MemberType NoteProperty -Name 'Id' -Value 3
+PS> $Item
+
+Name Id
+---- --
+test  3
+```
+
+[All about custom objects by Kevin Marquette](https://kevinmarquette.github.io/2016-10-28-powershell-everything-you-wanted-to-know-about-pscustomobject/)
+
+--
+
+<!-- .slide: id="custom_formats" -->
+
+## Hints: Custom formats (1)
+
+Define how to display an object:
+
+- Whether to use list or table view
+- Which properties to display
+
+Can be used with [custom types](#/types)
+
+Store XML data in `MyTypeName.Format.ps1xml`
+
+Import as [module](#/sharing) member or `Update-FormatData`
+
+Override by piping to `Format-List *`
+
+--
+
+## Hints: Custom formats (2)
+
+```powershell
+<?xml version="1.0" encoding="utf-8" ?>
+<Configuration><ViewDefinitions><View>
+<Name>DefaultView</Name>
+<ViewSelectedBy><TypeName>MyTypeName</TypeName></ViewSelectedBy>
+<TableControl><AutoSize/>
+<TableHeaders><TableColumnHeader>
+<Width>10</Width>
+<Alignment>Right</Alignment>
+</TableColumnHeader></TableHeaders>
+<TableRowEntries><TableRowEntry>
+<TableColumnItems><TableColumnItem><PropertyName>Id</PropertyName></TableColumnItem></TableColumnItems>
+</TableRowEntry></TableRowEntries>
+</TableControl>
+</View></ViewDefinitions></Configuration>
+```
+
+See also the [official documentation](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_format.ps1xml?view=powershell-6)
+
+Display loaded formats using `Get-FormatData`
+
+--
+
+<!-- .slide: id="quoting" -->
+
+## Hints: Quoting
+
+Single quotes do not evaluate variables
+
+Double quotes evaluate variables
+
+Here strings allow for multi-line string:
+
+```powershell
+$Data = @"
+Enter your multi
+line string here
+line breaks will
+be preserved
+"@
+```
+
+Stick to single quotes whenever possible to avoid substitution
+
+--
+
+<!-- .slide: id="encoding" -->
+
+## Hints: Encoding
+
+Be careful when reading data from files or writing data to files
+
+```powershell
+Get-Content -Path myfile.txt -Encoding ASCII
+```
+
+ASCII is slowly disappearing, so you will have to use Unicode or UTF-8 more often
+
+--
+
+<!-- .slide: id="serialization" -->
+
+## Hints: Serialization
+
+Data structure can be serialized using `Export-CliXml` and `Import-CliXml`
+
+Or you can convert to/from [JSON](#/json)
+
+--
+
+<!-- .slide: id="json" -->
+
+## Hints: JSON
+
+Data structures can be converted to/from JSON using `ConvertTo-Json` and `ConvertFrom-Json`
+
+Note that `ConvertTo-Json` is limited to a `-Depth` of 3 by default
+
+--
+
+<!-- .slide: id="requires" -->
+
+## Hints: Requirements
+
+Place `#requires` in first line of script
+
+Expect script to run as administrator:
+
+```powershell
+#requires -RunAsAdministrator
+```
+
+Expect modules to be installed:
+
+```powershell
+#requires -Modules pester
+```
+
+Expect PowerShell version:
+
+```powershell
+#requires -Version 5.0
+```
+
+--
+
+<!-- .slide: id="pson" -->
+
+## Hints: PSON
+
+PowerShell Object Notation (PSON) is a PowerShell specific alternative to JSON
+
+The [module](#/sharing) manifest (`.psd1`) is expressed in PSON
+
+```powershell
+@{
+    Name = 'Test'
+    Tags = @('a', 'b', 'c')
+}
+```
+
+Import into variable `$Data`:
+
+```powershell
+Import-LocalizedData -BindingVariable Data `
+    -BaseDirectory . -FileName test.psd1
+```
+
+--
+
+<!-- .slide: id="psdefaultparametervalues" -->
+
+## Hints: Default parameters
+
+PowerShell can add parameters to cmdlets implicitly
+
+This can be very useful for setting a proxy
+
+```powershell
+$PSDefaultParameterValues = @{
+    'Install-Module:Proxy' = 'http://proxy.mydomain.com:3128'
+}
+```
+
+...or adding credentials:
+
+```powershell
+$Cred = Get-Credential
+$PSDefaultParameterValues = @{
+    'New-PSSession:Credential' = $Cred
+}
+```
+
+This applies to all calls in the same session
+
+--
+
+<!-- .slide: id="culture" -->
+
+## Hints: Culture
+
+XXX display datetime
+
+XXX display integer
+
+--
+
+<!-- .slide: id="datetime" -->
+
+## Hints: Date/time parsing
+
+XXX
+
+--
+
+<!-- .slide: id="credentials" -->
+
+## Hints: Credentials
+
+XXX new object
+
+XXX export / import
+
+XXX extract plaintest from SecureString
+
+--
+
+<!-- .slide: id="regex" -->
+
+## Hints: Regular expressions
+
+XXX
+
+--
+
+<!-- .slide: id="helpers" -->
+
+## Hints: Useful functions
+
+Many PowerShell enthusiasts have created their own library
+
+Mine is called [Helpers](https://github.com/nicholasdille/PowerShell-Helpers)
