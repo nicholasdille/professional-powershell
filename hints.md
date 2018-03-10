@@ -287,9 +287,25 @@ This applies to all calls in the same session
 
 ## Hints: Culture
 
-XXX display datetime
+Culture describes how data is displayed
 
-XXX display integer
+Formatting of `[datetime]` according to a specific culture:
+
+```powershell
+$Culture = [System.Globalization.CultureInfo]'en-US'
+Get-Date -Format $Culture.DateTimeFormat.ShortDatePattern
+```
+
+The same can be helpful for `[int]`:
+
+```powershell
+$Culture = [System.Globalization.CultureInfo]'de-DE'
+$Thread = [System.Threading.Thread]::CurrentThread
+$Thread.CurrentCulture = $Culture
+$Thread.CurrentUICulture = $Culture
+
+Invoke-Command { 1.4 }
+```
 
 --
 
@@ -297,7 +313,20 @@ XXX display integer
 
 ## Hints: Date/time parsing
 
-XXX
+Sometimes the following fails:
+
+```powershell
+Get-Date '24122014_022257'
+```
+
+Then you need to describe the format of the date:
+
+```powershell
+$usdate = '24122014_022257'
+[datetime]::ParseExact($usdate, 'ddMMyyyy_HHmmss', $null)
+```
+
+`ParseExact` accepts a [list of standard string](https://docs.microsoft.com/en-us/dotnet/standard/base-types/standard-date-and-time-format-strings)
 
 --
 
@@ -305,11 +334,37 @@ XXX
 
 ## Hints: Credentials
 
-XXX new object
+Create a new credential object:
 
-XXX export / import
+```powershell
+$pw = ConvertTo-SecureString "P@ssw0rd!" -AsPlainText -Force
+New-Object PSCredential -ArgumentList "username", $pw
+```
 
-XXX extract plaintest from SecureString
+Export and import credentials:
+
+```powershell
+# export
+$Credential | Export-CliXml -Path .\cred.clixml
+
+# import
+$Credential = Import-CliXml -Path .\cred.clixml
+```
+
+Note that the password is stored as a `[SecureString]` which cannot be imported on other hosts
+
+--
+
+<!-- .slide: id="securestring" -->
+
+## Hints: Plaintext from SecureString
+
+Extract the plaintext password from `[SecureString]`:
+
+```powershell
+$BSTR = [System.Runtime.InteropServices.Marshal]::SecureStringToBSTR($SecureString)
+[System.Runtime.InteropServices.Marshal]::PtrToStringAuto($BSTR)
+```
 
 --
 

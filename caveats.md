@@ -133,4 +133,15 @@ My module [WebRequest](https://github.com/nicholasdille/PowerShell-WebRequest) i
 
 ## Caveats: TLS 1.1/1.2
 
-XXX
+By default, Windows PowerShell 5 supports TLS 1.0 for `Invoke-WebRequest` and `Invoke-RestMethod`
+
+The following code enables TLS 1.1 and TLS 1.2:
+
+```powershell
+$Backup = [System.Net.ServicePointManager]::SecurityProtocol
+[System.Net.ServicePointManager]::SecurityProtocol = 'Tls11,Tls12'
+
+# code requiring TLS 1.1 and/or TLS 1.2
+
+[System.Net.ServicePointManager]::SecurityProtocol = $Backup
+```

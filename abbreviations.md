@@ -34,7 +34,7 @@ Get-ChildItem -Recurse      # not -rec
 
 ## Natural language
 
-XXX
+You can design [cmdlets](functions) to sound similar to natural language
 
 ```powershell
 Move-Item -From $a -To $b

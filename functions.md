@@ -185,12 +185,64 @@ A detailled example can be found [here](http://dille.name/blog/2017/08/27/how-to
 
 ## Dynamic functions
 
-XXX
+Functions are expose by `Function:\`
+
+```powershell
+$Code = {
+    param(
+        [Parameter(Mandatory)]
+        [ValidateNotNullOrEmpty()]
+        [string]
+        $Path
+    )
+
+    if (-not (Test-Path -Path $Path)) {
+        throw "Path '$Path' does not exist"
+    }
+}
+
+New-Item -Path Function:\Do-Something -Value $Code -Force
+```
 
 --
 
 <!-- .slide: id="dynamic_parameters" -->
 
-## Dynamic parameters
+## Dynamic parameters (1)
 
-XXX
+Parameters can be [created and populated during runtime](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_functions_advanced_parameters?view=powershell-6#dynamic-parameters)
+
+I recommend to use [`New-DynamicParameter`](https://github.com/beatcracker/Powershell-Misc/blob/master/New-DynamicParameter.ps1):
+
+```powershell
+function Do-Something
+{
+    DynamicParam {
+        @(
+            [psobject]@{
+                Name = 'Item'
+                Type = [string]
+                Mandatory = $true
+                ValidateSet = (Get-ChildItem).Name
+            }
+        ) | New-DynamicParameter
+    }
+}
+```
+
+--
+
+## Dynamic parameters (2)
+
+`New-DynamicParameter` also creates proper variables:
+
+```powershell
+function Do-Something
+{
+    DynamicParam {
+        #...
+    }
+
+    New-DynamicParameter -CreateVariables -BoundParameters $PSBoundParameters
+}
+```
