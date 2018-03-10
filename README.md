@@ -1,1 +1,1 @@
-# professional-powershell
+# Professional Powershell
