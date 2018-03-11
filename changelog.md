@@ -12,7 +12,7 @@ Hints: [Culture](#/culture) - [Date parsing](#/datetime) - [Credentials](#/crede
 
 Parallelization: [Invoke-Queue](#/invoke-queue)
 
-Remoting: [Remote modules](#/remote_module) - [Non-Admin](#/non_admin) - [LocalSubnet](#/LocalSubnet) - [PSSessionConfiguration](#/pssessionconfiguration) - [Reconnect session](#/reconnect)
+Remoting: [Modules](#/remote_module) - [Non-Admin](#/non_admin) - [LocalSubnet](#/LocalSubnet) - [Endpoints](#/pssessionconfiguration) - [Reconnect session](#/reconnect) - [TrustedHosts](#/trustedhosts)
 
 --
 

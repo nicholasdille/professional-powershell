@@ -25,7 +25,7 @@ When `Invoke-Command` is started with `-AsJob` it becomes a remote [job](#/jobs)
 
 <!-- .slide: id="credssp" -->
 
-## CredSSP (1)
+## CredSSP
 
 The Credential Security Support Provider (CredSSP) offers forwarding of credentials to remote hosts
 
@@ -43,9 +43,11 @@ Invoke-Command `
 
 --
 
-## CredSSP (2)
+<!-- .slide: id="trustedhosts" -->
 
-The client must allow forwarding credentials using `TrustedHosts` (elevation required):
+## WinRM TrustedHosts
+
+The client must either use HTTPS or allow forwarding credentials using `TrustedHosts` (elevation required):
 
 ```powershell
 Get-Item WSMan:\localhost\Client\TrustedHosts
