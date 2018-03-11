@@ -4,7 +4,7 @@
 
 Abbreviations: [Naming for natural language](#/language)
 
-Functions: [Dynamic functions](#/dynamic_functions) - [Dynamic parameters](#/dynamic_parameters)
+Functions: [Dynamic functions](#/dynamic_functions) - [Dynamic parameters](#/dynamic_parameters) - [Functions in jobs](#/job_functions)
 
 Caveats: [TLS 1.1/1.2](#/tls)
 

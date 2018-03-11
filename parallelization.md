@@ -58,6 +58,31 @@ See [parallelization](#/invoke_command)
 
 --
 
+<!-- .slide: id="job_functions" -->
+
+## Functions in jobs
+
+The concept of [dynamic functions](#/dynamic_functions) can be used to define a function in a job:
+
+```powershell
+# get scriptblock
+$BodyGetVerb = Get-Item -Path Function:\Get-Verb
+
+# create job
+$job = Start-Job -ScriptBlock {
+    New-Item `
+        -Path Function:\Test-GetVerb `
+        -Value $FunctionBody
+
+    Test-GetVerb
+} -ArgumentList $BodyGetVerb.Scriptblock
+
+# receive output
+$job | Wait-Job | Receive-Job | Format-Table
+```
+
+--
+
 <!-- .slide: id="runspaces" -->
 
 ## Runspaces
