@@ -79,6 +79,30 @@ New-PSSession -SessionOption $Option
 
 --
 
+<!-- .slide: id="reconnect" -->
+
+## Reconnect session
+
+Client and disconnect and reconnect a session
+
+```powershell
+# connect to a host
+$Session = New-PSSession -ComputerName 'RemoteHost'
+
+# disconnect the session
+Disconnect-PSSession -Session $Session
+
+# reconnect a disconnected session
+Connect-PSSession -Session $Session
+
+# retrieve a session
+Get-PSSession -ComputerName 'RemoteHost'
+```
+
+If this fails, the session has ended and you need to specify a [PSSessionOption](#/pssessionoption)
+
+--
+
 <!-- .slide: id="remoting_proxy" -->
 
 ## Remoting through a proxy
