@@ -144,6 +144,8 @@ function Do-Something
 }
 ```
 
+--
+
 <!-- .slide: id="shouldprocess" -->
 
 ## Functions: Confirmation (1)

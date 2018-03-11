@@ -19,7 +19,7 @@ Install-Module -Name pester
 Install-Module -Name pester -Scope CurrentUser
 ```
 
-XXX import [module using remoting](#/remote_module)
+Learn how to [import a module using remoting](#/remote_module)
 
 --
 

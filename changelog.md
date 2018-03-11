@@ -2,8 +2,6 @@
 
 ## Changelog: 2018-03-10
 
-Planned: DSC JEA
-
 Abbreviations: [Naming for natural language](#/language)
 
 Functions: [Dynamic functions](#/dynamic_functions) - [Dynamic parameters](#/dynamic_parameters)
