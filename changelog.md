@@ -10,9 +10,9 @@ Caveats: [TLS 1.1/1.2](#/tls)
 
 Hints: [Culture](#/culture) - [Date parsing](#/datetime) - [Credentials](#/credentials) - [RegEx](#/regex)
 
-Parallelization: [Invoke-Parallel](#/invoke-parallel)
+Parallelization: [Invoke-Queue](#/invoke-queue)
 
-Remoting: [Remote modules](#/remote_module) - [Non-Admin](#/non_admin) - [LocalSubnet](#/localsubnet) - [PSSessionConfiguration](#/pssessionconfiguration)
+Remoting: [Remote modules](#/remote_module) - [Non-Admin](#/non_admin) - [LocalSubnet](#/LocalSubnet) - [PSSessionConfiguration](#/pssessionconfiguration)
 
 --
 

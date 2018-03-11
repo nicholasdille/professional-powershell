@@ -70,7 +70,7 @@ The interface is very similar to `Get-Command *-Job`
 
 --
 
-<!-- .slide: id="invoke-parallel" -->
+<!-- .slide: id="invoke-queue" -->
 
 ## Invoke-Queue
 
