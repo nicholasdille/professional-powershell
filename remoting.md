@@ -140,7 +140,23 @@ Or create a new endpoint using [PSSessionConfiguration](#/pssessionconfiguration
 
 ## WinRM outside local subnet
 
-XXX
+By default, WinRM on public networks is only available from the same subnet:
+
+```powershell
+PS> $PublicProfile = Get-NetFirewallProfile -Name Public
+PS> $Rule = $PublicProfile `
+        | Get-NetFirewallRule `
+        | Where-Object Name -eq 'WINRM-HTTP-In-TCP'
+PS> $Filter = $Rule | Get-NetFirewallAddressFilter
+PS> $Filter.RemoteAddress
+LocalSubnet
+```
+
+Fix this:
+
+```powershell
+$Rule | Set-NetFirewallRule -RemoteAddress Any
+```
 
 --
 
