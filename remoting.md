@@ -120,9 +120,19 @@ See [`Import-RemoteModule`](https://github.com/nicholasdille/PowerShell-Helpers/
 
 ## Remoting as non-admin
 
-XXX
+By default, only admins are able to use remoting
 
-XXX see [PSSessionConfiguration](#/pssessionconfiguration)
+Controlled by the local `Remote Management Users` group
+
+Alternatively, change the session configuration:
+
+```powershell
+Set-PSSessionConfiguration `
+    -Name Microsoft.PowerShell `
+    -showSecurityDescriptorUI
+```
+
+Or create a new endpoint using [PSSessionConfiguration](#/pssessionconfiguration)
 
 --
 
