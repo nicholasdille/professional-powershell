@@ -234,7 +234,7 @@ Expect PowerShell version:
 
 <!-- .slide: id="pson" -->
 
-## Hints: PSON
+## Hints: PSON (1)
 
 PowerShell Object Notation (PSON) is a PowerShell specific alternative to JSON
 
@@ -252,6 +252,28 @@ Import into variable `$Data`:
 ```powershell
 Import-LocalizedData -BindingVariable Data `
     -BaseDirectory . -FileName test.psd1
+```
+
+--
+
+## Hints: PSON (2)
+
+PSON data structure with code must be parsed:
+
+```powershell
+@{
+    Config = @(
+        Path = (Join-Path -Path 'a' -ChildPath 'b')
+    )
+}
+```
+
+```powershell
+# if stored in ps1 file
+$Data = $(. '.\data.ps1')
+
+# if stored in psd1 file
+$Data = Get-Content -Raw -Path '.\data.psd1' | Invoke-Expression
 ```
 
 --

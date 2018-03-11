@@ -8,7 +8,7 @@ Functions: [Dynamic functions](#/dynamic_functions) - [Dynamic parameters](#/dyn
 
 Caveats: [TLS 1.1/1.2](#/tls)
 
-Hints: [Culture](#/culture) - [Date parsing](#/datetime) - [Credentials](#/credentials) - [RegEx](#/regex)
+Hints: [Culture](#/culture) - [Date parsing](#/datetime) - [Credentials](#/credentials) - [RegEx](#/regex) - [PSON](#/pson)
 
 Parallelization: [Invoke-Queue](#/invoke-queue)
 
