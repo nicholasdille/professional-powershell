@@ -146,6 +146,65 @@ XXX
 
 <!-- .slide: id="pssessionconfiguration" -->
 
-## PSSessionConfiguration
+## PSSessionConfiguration (1)
 
-XXX
+PowerShell support multiple [endpoints for remoting](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_session_configurations?view=powershell-6)
+
+Endpoints can have different permissions and capabilities
+
+```powershell
+# create a new endpoint
+Register-PSSessionConfiguration -Name MyNewEndpoint
+
+# configure endpoint
+Set-PSSessionConfiguration -Name MyNewEndpoint #...
+
+# use endpoint
+Enter-PSSession -Configuration Name MyNewEndpoint
+
+# remove endpoint
+Unregister-PSSessionConfiguration -Name MyNewEndpoint
+```
+
+--
+
+## PSSessionConfiguration (2)
+
+Endpoints can be restricted:
+
+```powershell
+# create session configuration file
+New-PSSessionConfigurationFile `
+    -Path .\MyNewEndpoint.pssc
+
+# edit file
+
+# register endpoint
+Register-PSSessionConfiguration `
+    -Name MyNewEndpoint `
+    -Path .\MyNewEndpoint.pssc
+```
+
+--
+
+## PSSessionConfiguration (3)
+
+`LanguageMode` defines which language features are available
+
+- `FullLanguage` for no restrictions
+
+- [`RestrictedLanguage`](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_language_modes?view=powershell-6) only offers simple comparison operators and few builtin varialbes
+
+- `NoLanguage` only allows existing cmdlets to be executed
+
+--
+
+## PSSessionConfiguration (4)
+
+`SessionType` prepares a session configuration:
+
+- `Default` offers `FullLanguage` and adds snap-in [`Microsoft.PowerShell.Core`](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/?view=powershell-5.1)
+
+- `Empty` does not load any snap-ins (therefore, no `Import-Module` and `Add-PSSnapin`) and offers `NoLanguage`
+
+- `RestrictedRemoteServer` adds very few cmdlets (e.g. `Exit-PSSession`) and offers `NoLanguage`
