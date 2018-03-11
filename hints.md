@@ -372,7 +372,22 @@ $BSTR = [System.Runtime.InteropServices.Marshal]::SecureStringToBSTR($SecureStri
 
 ## Hints: Regular expressions
 
-XXX
+Enable extended mode `(?x)` to use line breaks and comments:
+
+```powershell
+if ($Line -match '(?x)
+    ^                           # Beginning of the line
+    (?<SourceIp>\S+) \s         # IP address
+    \S+ \s                      # deprecated
+    (?<User>\S+) \s             # username (HTTP auth)
+    \[(?<Timestamp>[^]]+)\] \s  # date enclosed in brackets
+    "(?<Request>.+)" \s         # request (quoted)
+    (?<Code>\d+) \s             # HTTP return code
+    (?<Size>\d+|-) \s           # Size of response
+    $                           # End of line
+    ')
+    {}
+```
 
 --
 
