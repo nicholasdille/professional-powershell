@@ -96,7 +96,23 @@ New-PSSession -SessionOption $Option
 
 ## Remote module
 
-XXX [module](#/sharing)
+PowerShell can even import a remote [module](#/sharing)
+
+```powershell
+Invoke-Command `
+    -Session $Session `
+    -Scriptblock { Import-Module 'Helpers' }
+$RemoteModule = Import-PSSession `
+    -Session $Session `
+    -Module $ModuleName `
+    -AllowClobber `
+    -FormatTypeName *
+Import-Module `
+    -Name $RemoteModule `
+    -Global
+```
+
+See [`Import-RemoteModule`](https://github.com/nicholasdille/PowerShell-Helpers/blob/master/Helpers/Public/Import-RemoveModule.ps1)
 
 --
 
