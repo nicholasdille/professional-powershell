@@ -72,6 +72,8 @@ The interface is very similar to `Get-Command *-Job`
 
 <!-- .slide: id="invoke-parallel" -->
 
-## Invoke-Parallel
+## Invoke-Queue
 
-XXX
+Invoke the same code to a list of items
+
+See [`Invoke-Queue`](http://dille.name/blog/2015/09/08/processing-a-queue-using-parallel-powershell-jobs-with-throttling/)
