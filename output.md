@@ -21,7 +21,7 @@ PowerShell supports several stream for different types of information:
 
 Avoid `Write-Host` because it does not add to a stream
 
-Output is directly sent to the console to display
+`Write-Host` Output is only sent to the console to display, if no console is there (such as running in a background process) then no output is displayed
 
 --
 
@@ -50,9 +50,7 @@ Write-Information 'message'
 Capturing the information stream:
 
 ```powershell
-Get-ChildItem `
-    -InformationAction Continue `
-    -InformationVariable InfoStream
+Get-ChildItem -InformationAction Continue -InformationVariable InfoStream
 $InfoStream
 ```
 

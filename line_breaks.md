@@ -6,18 +6,20 @@ Break lines at 70 characters
 
 Configure your editor to replace a tabstop with four spaces
 
-Use the backtick (`) to break a line
+Do not use the backtick (`) to break a line, use one of the other [line continuation characters](https://get-powershellblog.blogspot.co.uk/2017/07/bye-bye-backtick-natural-line.html) instead
 
 --
 
 ## Break long lines
 
-Break at parameters and indent:
+Break at operators and indent:
 
 ```powershell
-Get-ChildItem `
-    -Path c:\ `
-    -Recurse
+if ($InputObject -eq 'ThisValue' -or
+    $InputObject -eq 'OtherValue')
+{
+    Do-Something
+}
 ```
 
 --
@@ -27,8 +29,8 @@ Get-ChildItem `
 Break at pipeline steps and indent:
 
 ```powershell
-Get-ChildItem -Path c:\ -Recurse `
-    | Select-Object -First 10
+Get-ChildItem -Path c:\ -Recurse |
+    Select-Object -First 10
 ```
 
 --
