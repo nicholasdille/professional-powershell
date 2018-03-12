@@ -25,6 +25,7 @@ Get-ChildItem | Remove-Item
 ```powershell
 function Do-Something
 {
+    [cmdletbinding()]
     param(
         [Parameter(ValueFromPipeline)]
         [string[]]
@@ -75,6 +76,7 @@ Instead of using two [parameter sets](#/parameter_sets), extract the parameter f
 ```powershell
 function Do-Something
 {
+    [cmdletbinding()]
     param(
         [Parameter(Mandatory,
             ValueFromPipeline,
@@ -97,6 +99,7 @@ By using an parameter alias, you can retrieve a different property:
 ```powershell
 function Do-Something
 {
+    [cmdletbinding()]
     param(
         [Parameter(Mandatory,
             ValueFromPipeline,
