@@ -116,13 +116,14 @@ function Do-Something
 
         [Parameter(ParameterSetName='ByObject')]
         [object]$Object,
-        [Parameter(ParameterSetName='ById')]
-        [Parameter(ParameterSetName='ByObject')]
+
         [switch]$PassThru
     )
     if ($PSCmdlet.ParameterSetName -ieq 'ByObject') {}
 }
 ```
+
+Parameters which aren't declared as members of a specific ParameterSet are assumed to be members of all ParameterSets.
 
 --
 
