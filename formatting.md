@@ -10,7 +10,7 @@ Proper formatting increases readability and enables code [reuse](#/scope)
 
 ## Formatting
 
-Use CamelCase for everything
+Use PascalCase for everything
 
 ```powershell
 $MyVariable = ''
