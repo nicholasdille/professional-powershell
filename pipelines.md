@@ -4,7 +4,7 @@
 
 To stream or not to stream...
 
-Only use stream processing if you can operate on individual object independent of another
+Only use stream processing if you can operate on individual objects independent of one another
 
 Good idea: Substitute in a list of strings
 
@@ -92,7 +92,7 @@ function Do-Something
 
 ## Objects on the pipeline (2)
 
-By using an parameter alias, you can retrieve a different property:
+By using a parameter alias, you can retrieve a different property:
 
 ```powershell
 function Do-Something
