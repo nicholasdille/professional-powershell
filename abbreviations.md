@@ -4,23 +4,11 @@
 
 Abbreviations make code harder to read
 
---
-
-<!-- .slide: id="aliases" -->
-
-## Do not abbreviate
-
 Do not use aliases:
 
 ```powershell
 Get-ChildItem      # not gci
 ```
-
---
-
-<!-- .slide: id="parameters" -->
-
-## Do not abbreviate
 
 Do not use abbreviated parameters:
 
