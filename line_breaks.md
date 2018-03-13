@@ -2,7 +2,7 @@
 
 ## Break long lines
 
-Break lines at 70 characters
+Break lines at 115 characters
 
 Configure your editor to replace a tabstop with four spaces
 
