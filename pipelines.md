@@ -128,6 +128,10 @@ Get-ChildItem -OutVariable gci |
     Group-Object -Property Extension -OutVariable group |
     Sort-Object -Property Count -OutVariable sort |
     Select-Object -Last 1
+$gci
+$where
+$group
+$sort
 ```
 
 A single execution suffices to debug all steps of the pipeline
