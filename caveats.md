@@ -77,7 +77,7 @@ For large hashtables use `System.Collections.Hashtable`:
 
 ```powershell
 # slow
-$Data = @()
+$Data = @{}
 1..1mb | ForEach-Object { $Data[$_] = $_ }
 
 # fast

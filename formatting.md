@@ -47,26 +47,26 @@ Invoke-Command -Scriptblock { whoami }
 Hard to read:
 
 ```powershell
-$Path = (Get-ChildItem | Select -First 1).FullName
+$Path = (Get-ChildItem | Select-Object -First 1).FullName
 ```
 
 Better:
 
 ```powershell
-$Path = Get-ChildItem | Select -First 1 -ExpandProperty FullName
+$Path = Get-ChildItem | Select-Object -First 1 -ExpandProperty FullName
 ```
 
 Best because you continue with an object:
 
 ```powershell
-$Path = $Get-ChildItem | Select -First 1
+$Path = $Get-ChildItem | Select-Object -First 1
 $Path.FullName
 ```
 
 The following line are equivalent:
 
 ```powershell
-Get-ChildItem | Select -ExpandProperty FullName
+Get-ChildItem | Select-Object -ExpandProperty FullName
 Get-ChildItem | ForEach-Object { $_.FullName }
 ```
 

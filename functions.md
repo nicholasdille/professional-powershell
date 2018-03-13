@@ -53,7 +53,7 @@ Supported [keywords in comment based help](https://docs.microsoft.com/en-us/powe
 
 ## Advanced functions
 
-Promote to advanced function because...
+Promote to an advanced function because...
 
 - Advanced feature like [ShouldProcess](#/shouldprocess) and `-WhatIf` and `-Confirm`
 
@@ -131,7 +131,7 @@ Parameters which aren't declared as members of a specific ParameterSet are assum
 
 ## Parameter sets (2)
 
-PowerShell cannot determine the current set if now parameters are supplied
+PowerShell cannot determine the current set if no parameters are supplied
 
 The `DefaultParameterSetName` helps PowerShell to resolve this by assuming one by default:
 
@@ -154,10 +154,10 @@ function Do-Something
 
 ## Functions: Confirmation (1)
 
-Advanced functions support `ShouldProcess` to ask for user confirmation
+Advanced functions can support `ShouldProcess` to ask for user confirmation
 
 ```powershell
-function Do-Something
+function New-Something
 {
     [CmdletBinding(
         SupportsShouldProcess,
@@ -191,7 +191,7 @@ A detailled example can be found [here](http://dille.name/blog/2017/08/27/how-to
 
 ## Dynamic functions
 
-Functions are expose by `Function:\`
+Functions are exposed by `Function:\`
 
 ```powershell
 $Code = {
