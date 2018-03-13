@@ -50,7 +50,11 @@ Write-Information 'message'
 Capturing the information stream:
 
 ```powershell
-Get-ChildItem -InformationAction Continue -InformationVariable InfoStream
+$Params = @{
+    InformationAction = 'Continue'
+    InformationVariable = 'InfoStream
+}
+Get-ChildItem @Params
 $InfoStream
 ```
 

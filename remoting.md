@@ -135,9 +135,9 @@ $InvokeCommandParameters = @{
 Invoke-Command @InvokeCommandParameters
 
 $RemoteModuleParameters = @{
-    -Session = $Session
-    -Module = $ModuleName
-    -AllowClobber = $true
+    -Session        = $Session
+    -Module         = $ModuleName
+    -AllowClobber   = $true
     -FormatTypeName = *
 }
 $RemoteModule = Import-PSSession @RemoteModuleParameters

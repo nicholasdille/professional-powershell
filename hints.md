@@ -250,8 +250,12 @@ The [module](#/sharing) manifest (`.psd1`) is expressed in PSON
 Import into variable `$Data`:
 
 ```powershell
-Import-LocalizedData -BindingVariable Data `
-    -BaseDirectory . -FileName test.psd1
+$Params = @{
+    BindingVariable = 'Data'
+    BaseDirectory   = '-'
+    FileName        = 'test.psd1'
+}
+Import-LocalizedData @Params
 ```
 
 --

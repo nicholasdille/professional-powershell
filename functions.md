@@ -251,6 +251,10 @@ function Do-Something
         #...
     }
 
-    New-DynamicParameter -CreateVariables -BoundParameters $PSBoundParameters
+    $Param = @{
+        CreateVariables = $true
+        BoundParameters = $PSBoundParameters
+    }
+    New-DynamicParameter @Params
 }
 ```
