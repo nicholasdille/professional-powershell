@@ -33,7 +33,7 @@ Use `Write-Verbose` to allow users to follow your code
 
 Use `Write-Debug` to allow users to debug your code
 
-Which output is displayed is controlled with by [preference variables](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_preference_variables?view=powershell-6) or by parameters in [advanced functions](#/advanced_functions)
+Which output is displayed is controlled with [preference variables](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_preference_variables?view=powershell-6) or by parameters in [advanced functions](#/advanced_functions)
 
 --
 
@@ -41,7 +41,7 @@ Which output is displayed is controlled with by [preference variables](https://d
 
 ## Output: Information stream
 
-New in PowerShell 5.0 to informational (non-verbose) messages
+New in PowerShell 5.0 for informational (non-verbose) messages
 
 ```powershell
 Write-Information 'message'

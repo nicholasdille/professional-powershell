@@ -85,7 +85,7 @@ New-PSSession -SessionOption $Option
 
 ## Reconnect session
 
-Client and disconnect and reconnect a session
+Clients can disconnect and reconnect with a session
 
 ```powershell
 # connect to a host

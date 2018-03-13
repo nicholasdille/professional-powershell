@@ -2,7 +2,7 @@
 
 ## Code Quality
 
-Run a script analysis to understand how Microsoft and the community expect code to be written
+Run script analysis to understand how Microsoft and the community expect code to be written
 
 Write unit tests for your functions
 
