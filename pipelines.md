@@ -120,11 +120,11 @@ function Do-Something
 `-OutVariable` can be used to obtain result of individual steps:
 
 ```powershell
-Get-ChildItem -OutVariable gci `
-    | Where-Object { Length -ne $null } -OutVariable where `
-    | Group-Object -Property Extension -OutVariable group `
-    | Sort-Object -Property Count -OutVariable sort `
-    | Select-Object -Last 1
+Get-ChildItem -OutVariable gci |
+    Where-Object { Length -ne $null } -OutVariable where |
+    Group-Object -Property Extension -OutVariable group |
+    Sort-Object -Property Count -OutVariable sort |
+    Select-Object -Last 1
 ```
 
 A single execution suffices to debug all steps of the pipeline

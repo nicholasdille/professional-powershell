@@ -25,8 +25,8 @@ function New-Credential
     New-Object PSCredential -ArgumentList $User, $SecPass
 }
 
-PS> Invoke-ScriptAnalyzer .\New-Credential.ps1 `
-    | Select-Object -ExpandProperty RuleName
+PS> Invoke-ScriptAnalyzer .\New-Credential.ps1 |
+    Select-Object -ExpandProperty RuleName
 PSAvoidUsingUserNameAndPassWordParams
 PSAvoidUsingConvertToSecureStringWithPlainText
 PSAvoidUsingPlainTextForPassword
@@ -74,13 +74,13 @@ Invoke-ScriptAnalyzer .\New-Credential.ps1 -SuppressedOnly
 
 Describe 'New-Credential' {
     It 'Produces PSCredential object' {
-        New-Credential -User a -Pass b `
-            | Should BeOfType PSCredential
+        New-Credential -User a -Pass b |
+            Should BeOfType PSCredential
     }
     It 'Embed correct user' {
-        New-Credential -User a -Pass b `
-            | Select-Object -ExpandProperty UserName `
-            | Should Be 'a'
+        New-Credential -User a -Pass b |
+            Select-Object -ExpandProperty UserName |
+            Should Be 'a'
     }
 }
 ```
