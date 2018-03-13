@@ -15,6 +15,7 @@ Use integrated parameter validation
 ```powershell
 function Do-Something
 {
+    [cmdletbinding()]
     param(
         [Parameter(Mandatory)]
         [ValidateNotNullOrEmpty()]
@@ -52,7 +53,7 @@ Supported [keywords in comment based help](https://docs.microsoft.com/en-us/powe
 
 ## Advanced functions
 
-Promote to advanced functions because...
+Promote to an advanced function because...
 
 - Advanced feature like [ShouldProcess](#/shouldprocess) and `-WhatIf` and `-Confirm`
 
@@ -108,18 +109,21 @@ Functions can accept multiple sets of parameters
 ```powershell
 function Do-Something
 {
+    [cmdletbinding()]
     param(
         [Parameter(ParameterSetName='ById')]
         [int]$Id,
+
         [Parameter(ParameterSetName='ByObject')]
         [object]$Object,
-        [Parameter(ParameterSetName='ById')]
-        [Parameter(ParameterSetName='ByObject')]
+
         [switch]$PassThru
     )
     if ($PSCmdlet.ParameterSetName -ieq 'ByObject') {}
 }
 ```
+
+Parameters which aren't declared as members of a specific ParameterSet are assumed to be members of all ParameterSets.
 
 --
 
@@ -191,6 +195,7 @@ Functions are exposed by `Function:\`
 
 ```powershell
 $Code = {
+    [cmdletbinding()]
     param(
         [Parameter(Mandatory)]
         [ValidateNotNullOrEmpty()]
@@ -219,6 +224,7 @@ I recommend to use [`New-DynamicParameter`](https://github.com/beatcracker/Power
 ```powershell
 function Do-Something
 {
+    [cmdletbinding()]
     DynamicParam {
         @(
             [psobject]@{
@@ -241,6 +247,7 @@ function Do-Something
 ```powershell
 function Do-Something
 {
+    [cmdletbinding()]
     DynamicParam {
         #...
     }

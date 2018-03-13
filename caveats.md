@@ -98,6 +98,7 @@ Use the following instead to throw:
 ```powershell
 function Do-Something
 {
+    [cmdletbinding()]
     param(
         [Parameter()]
         [ValidateNotNullOrEmpty()]

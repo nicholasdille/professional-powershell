@@ -75,12 +75,12 @@ Invoke-ScriptAnalyzer .\New-Credential.ps1 -SuppressedOnly
 Describe 'New-Credential' {
     It 'Produces PSCredential object' {
         New-Credential -User a -Pass b |
-            Should BeOfType PSCredential
+            Should -BeOfType PSCredential
     }
     It 'Embed correct user' {
         New-Credential -User a -Pass b |
             Select-Object -ExpandProperty UserName |
-            Should Be 'a'
+            Should -Be 'a'
     }
 }
 ```
