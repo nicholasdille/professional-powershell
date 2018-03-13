@@ -44,7 +44,8 @@ $Items = $Data | Where-Object { $_ like '*arg' }
 $Items = $Data | where-Object { $_ -like '*bar' }
 ```
 
-Solution: Wrap result into array:
+Solved by wrapping result into array:
+
 ```powershell
 $Items = @($Data | where-Object { $_ -like '*bar' })
 ```
@@ -91,22 +92,20 @@ $Data = New-Object -TypeName System.Collections.Hashtable
 
 ## Caveats: Avoid parameter prompts
 
-If a [mandatory parameter](#/parameter_validation) is not specified, PowerShell will prompt for it
+If missing, PowerShell will prompt for [mandatory parameters](#/parameter_validation)
 
 Use the following instead to throw:
 
 ```powershell
 function Do-Something
 {
-    [cmdletbinding()]
+    [CmdletBinding()]
     param(
         [Parameter()]
         [ValidateNotNullOrEmpty()]
         [string]
         $Path = $(throw 'Please specify mandatory parameter "Path"')
     )
-
-    #
 }
 ```
 
@@ -114,7 +113,7 @@ function Do-Something
 
 <!-- .slide: id="basic_authentication" -->
 
-## Caveats: Basic authentication
+## Caveats: HTTP Basic auth
 
 Before [PowerShell Core](#/cross_platform) 6, `Invoke-WebRequest` does not support authentication
 

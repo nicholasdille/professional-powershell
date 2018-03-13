@@ -21,7 +21,7 @@ PowerShell supports several stream for different types of information:
 
 Avoid `Write-Host` because it does not add to a stream
 
-`Write-Host` Output is only sent to the console to display, if no console is there (such as running in a background process) then no output is displayed
+`Write-Host` output is only sent to the console to display, if no console is there (such as running in a background process) then no output is displayed
 
 --
 

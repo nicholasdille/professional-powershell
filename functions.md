@@ -15,7 +15,7 @@ Use integrated parameter validation
 ```powershell
 function Do-Something
 {
-    [cmdletbinding()]
+    [CmdletBinding()]
     param(
         [Parameter(Mandatory)]
         [ValidateNotNullOrEmpty()]
@@ -109,7 +109,7 @@ Functions can accept multiple sets of parameters
 ```powershell
 function Do-Something
 {
-    [cmdletbinding()]
+    [CmdletBinding()]
     param(
         [Parameter(ParameterSetName='ById')]
         [int]$Id,
@@ -123,7 +123,7 @@ function Do-Something
 }
 ```
 
-Parameters which aren't declared as members of a specific ParameterSet are assumed to be members of all ParameterSets.
+Parameters without a `ParameterSetName` belong to all parameter sets
 
 --
 
@@ -195,19 +195,18 @@ Functions are exposed by `Function:\`
 
 ```powershell
 $Code = {
-    [cmdletbinding()]
+    [CmdletBinding()]
     param(
         [Parameter(Mandatory)]
         [ValidateNotNullOrEmpty()]
-        [string]
-        $Path
+        [string]$Path
     )
 
-    if (-not (Test-Path -Path $Path)) {
+    if (-not (Test-Path -Path $Path))
+    {
         throw "Path '$Path' does not exist"
     }
 }
-
 New-Item -Path Function:\Do-Something -Value $Code -Force
 ```
 
@@ -217,14 +216,14 @@ New-Item -Path Function:\Do-Something -Value $Code -Force
 
 ## Dynamic parameters (1)
 
-Parameters can be [created and populated during runtime](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_functions_advanced_parameters?view=powershell-6#dynamic-parameters)
+Parameters can be [created during runtime](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_functions_advanced_parameters?view=powershell-6#dynamic-parameters)
 
 I recommend to use [`New-DynamicParameter`](https://github.com/beatcracker/Powershell-Misc/blob/master/New-DynamicParameter.ps1):
 
 ```powershell
 function Do-Something
 {
-    [cmdletbinding()]
+    [CmdletBinding()]
     DynamicParam {
         @(
             [psobject]@{
@@ -247,7 +246,7 @@ function Do-Something
 ```powershell
 function Do-Something
 {
-    [cmdletbinding()]
+    [CmdletBinding()]
     DynamicParam {
         #...
     }
