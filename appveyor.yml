@@ -23,6 +23,8 @@ deploy_script:
     make
     
     cd /home/appveyor/projects/professional-powershell
+    
+    rm -rf .git
 
     echo -e "cd www\ncd professional-powershell\nput -r ." > sftp
     
