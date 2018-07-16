@@ -424,3 +424,23 @@ if ($Line -match '(?x)
 Many PowerShell enthusiasts have created their own library
 
 Mine is called [Helpers](https://github.com/nicholasdille/PowerShell-Helpers)
+
+--
+
+<!-- .slide: id="gridview" -->
+
+## Hints: Tabular Data
+
+Tabular data can be visualized by using `Out-GridView`:
+
+```powershell
+Get-ChildItem | Out-GridView
+```
+
+`Out-GridView` can also be used as a simple dialog:
+
+```powershell
+Get-WindowsOptionalFeature -Online |
+    Out-GridView -Title 'Select new features' -OutputMode Multiple |
+    Enable-WindowsOptionalFeature -Online
+```

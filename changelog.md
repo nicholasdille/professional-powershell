@@ -8,6 +8,10 @@ Added [advantages over Linux shells](#/linux)
 
 Added [information about the intended audience](#/audience)
 
+Added [`Out-GridView`](#/gridview)
+
+--
+
 ## Changelog: 2018-03-13
 
 Thanks to [Chris Gardner](https://twitter.com/halbaradkenafin) for his PRs including the removal of backticks ([#35](https://github.com/nicholasdille/professional-powershell/issues/35)), minor corrections ([#32](https://github.com/nicholasdille/professional-powershell/issues/32) and [#37](https://github.com/nicholasdille/professional-powershell/issues/37)) and some best practices ([#36](https://github.com/nicholasdille/professional-powershell/issues/36))
