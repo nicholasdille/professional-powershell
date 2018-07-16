@@ -451,9 +451,7 @@ Get-WindowsOptionalFeature -Online |
 
 ## Hints: Auto-Elevation
 
-Some script require an elevated instance of PowerShell
-
-Script can automatically elevate:
+Some script require an elevation
 
 ```powershell
 $myWindowsID = [System.Security.Principal.WindowsIdentity]::GetCurrent()
