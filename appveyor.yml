@@ -13,6 +13,7 @@ environment:
     secure: ohsHTmnC9yFEISEZZxbjCA==
   sftppass:
     secure: IYfz8DMZk78p0+8a17iCfol2qbi7HWFsHM+b8/iaTx8=
+build: off
 deploy_script:
 - sh: >-
     pwd
