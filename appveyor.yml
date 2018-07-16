@@ -24,6 +24,6 @@ deploy_script:
     
     cd /home/appveyor/projects/professional-powershell
 
-    echo -e "cd www\nmkdir professional-powershell\ncd professional-powershell\nput -r ." > sftp
+    echo -e "cd www\ncd professional-powershell\nput -r ." > sftp
     
     /home/appveyor/projects/passh/passh -p $sftppass bash -c "sftp -o BatchMode=no -o StrictHostKeyChecking=no -b sftp $sftpuser@$sftphost"
