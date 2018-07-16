@@ -10,6 +10,8 @@ Added [information about the intended audience](#/audience)
 
 Added [`Out-GridView`](#/gridview)
 
+Added [automatic elevation](#/elevation)
+
 --
 
 ## Changelog: 2018-03-13

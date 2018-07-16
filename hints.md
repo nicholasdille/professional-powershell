@@ -444,3 +444,34 @@ Get-WindowsOptionalFeature -Online |
     Out-GridView -Title 'Select new features' -OutputMode Multiple |
     Enable-WindowsOptionalFeature -Online
 ```
+
+--
+
+<!-- .slide: id="elevation" -->
+
+## Hints: Auto-Elevation
+
+Some script require an elevated instance of PowerShell
+
+Script can automatically elevate:
+
+```powershell
+$myWindowsID = [System.Security.Principal.WindowsIdentity]::GetCurrent()
+$myWindowsPrincipal = New-Object System.Security.Principal.WindowsPrincipal($myWindowsID)
+$adminRole = [System.Security.Principal.WindowsBuiltInRole]::Administrator
+
+# Check to see if we are currently running "as Administrator"
+if (-not $myWindowsPrincipal.IsInRole($adminRole)) {
+
+    # We are not running "as Administrator" - so relaunch as administrator
+    $newProcess = New-Object System.Diagnostics.ProcessStartInfo "PowerShell";
+    $newProcess.Arguments = $myInvocation.MyCommand.Definition;
+    $newProcess.Verb = "runas";
+    [System.Diagnostics.Process]::Start($newProcess);
+
+    # Exit from the current, unelevated, process
+    exit
+}
+
+# Run your code that needs to be elevated here
+```
