@@ -14,6 +14,7 @@ environment:
   sftppass:
     secure: IYfz8DMZk78p0+8a17iCfol2qbi7HWFsHM+b8/iaTx8=
 build: off
+deploy_script:
 - sh: >-
     git clone https://github.com/clarkwang/passh.git /home/appveyor/projects/passh
     
