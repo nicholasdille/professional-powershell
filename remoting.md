@@ -21,6 +21,8 @@ Invoke-Command {
 
 When `Invoke-Command` is started with `-AsJob` it becomes a remote [job](#/jobs)
 
+Scriptblocks can define parameters and such just as [functions](#/functions)
+
 --
 
 <!-- .slide: id="credssp" -->
