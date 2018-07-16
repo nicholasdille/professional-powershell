@@ -1,3 +1,13 @@
+<!-- .slide: id="audience" -->
+
+## Audience
+
+The contents are targetted at the intermediate to expert user of PowerShell
+
+Beginners can probably profit from experimenting with the topics
+
+--
+
 <!-- .slide: id="scope" -->
 
 ## Scope
