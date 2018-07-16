@@ -454,19 +454,16 @@ Get-WindowsOptionalFeature -Online |
 Some script require an elevation
 
 ```powershell
-$myWindowsID = [System.Security.Principal.WindowsIdentity]::GetCurrent()
-$myWindowsPrincipal = New-Object System.Security.Principal.WindowsPrincipal($myWindowsID)
-$adminRole = [System.Security.Principal.WindowsBuiltInRole]::Administrator
+using namespace System.Security.Principal
+$myWindowsPrincipal = New-Object WindowsPrincipal([WindowsIdentity]::GetCurrent())
 
 # Check to see if we are currently running "as Administrator"
-if (-not $myWindowsPrincipal.IsInRole($adminRole)) {
-
+if (-not $myWindowsPrincipal.IsInRole([WindowsBuiltInRole]::Administrator)) {
     # We are not running "as Administrator" - so relaunch as administrator
     $newProcess = New-Object System.Diagnostics.ProcessStartInfo "PowerShell";
     $newProcess.Arguments = $myInvocation.MyCommand.Definition;
     $newProcess.Verb = "runas";
     [System.Diagnostics.Process]::Start($newProcess);
-
     # Exit from the current, unelevated, process
     exit
 }
