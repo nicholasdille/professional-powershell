@@ -13,11 +13,15 @@ environment:
     secure: ohsHTmnC9yFEISEZZxbjCA==
   sftppass:
     secure: IYfz8DMZk78p0+8a17iCfol2qbi7HWFsHM+b8/iaTx8=
-build: off
+build_script:
+- sh: >-
+    git clone https://github.com/clarkwang/passh.git /home/appveyor/projects/passh
+    
+    cd /home/appveyor/projects/passh
+    
+    make
 deploy_script:
 - sh: >-
-    pwd
-    
     echo -e "cd www\nmkdir professional-powershell\ncd professional-powershell\nput -r ." > sftp
     
     /home/appveyor/projects/passh/passh -p $sftppass bash -c "sftp -o BatchMode=no -o StrictHostKeyChecking=no -b sftp $sftpuser@$sftphost"
