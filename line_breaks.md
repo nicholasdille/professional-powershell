@@ -2,10 +2,6 @@
 
 ## Break long lines
 
-Break lines at 115 characters
-
-Configure your editor to replace a tabstop with four spaces
-
 Do not use the backtick (`) to break a line, use one of the other [line continuation characters](https://get-powershellblog.blogspot.co.uk/2017/07/bye-bye-backtick-natural-line.html) instead
 
 --
@@ -16,8 +12,7 @@ Break at operators and indent:
 
 ```powershell
 if ($InputObject -eq 'ThisValue' -or
-    $InputObject -eq 'OtherValue')
-{
+    $InputObject -eq 'OtherValue') {
     Do-Something
 }
 ```

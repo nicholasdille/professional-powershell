@@ -97,8 +97,7 @@ If missing, PowerShell will prompt for [mandatory parameters](#/parameter_valida
 Use the following instead to throw:
 
 ```powershell
-function Do-Something
-{
+function Do-Something {
     [CmdletBinding()]
     param(
         [Parameter()]

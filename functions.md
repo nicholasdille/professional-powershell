@@ -13,8 +13,7 @@ Isolate functionality into functions and modules
 Use integrated parameter validation
 
 ```powershell
-function Do-Something
-{
+function Do-Something {
     [CmdletBinding()]
     param(
         [Parameter(Mandatory)]
@@ -60,8 +59,7 @@ Promote to an advanced function because...
 - Parameters for controlling verbosity (`-Verbose` and `-Debug`)
 
 ```powershell
-function Do-Something
-{
+function Do-Something {
     [CmdletBinding()]
     param()
 
@@ -78,8 +76,7 @@ function Do-Something
 Be careful of additional output
 
 ```powershell
-PS> function Test-Output
-{
+PS> function Test-Output {
     'string output'
     42
 }
@@ -107,8 +104,7 @@ See [pipelines](#/pipelines)
 Functions can accept multiple sets of parameters
 
 ```powershell
-function Do-Something
-{
+function Do-Something {
     [CmdletBinding()]
     param(
         [Parameter(ParameterSetName='ById')]
@@ -136,8 +132,7 @@ PowerShell cannot determine the current set if no parameters are supplied
 The `DefaultParameterSetName` helps PowerShell to resolve this by assuming one by default:
 
 ```powershell
-function Do-Something
-{
+function Do-Something {
     [CmdletBinding(DefaultParameterSetName='ById')]
     param(
         [Parameter(ParameterSetName='ById')]
@@ -157,16 +152,14 @@ function Do-Something
 Advanced functions can support `ShouldProcess` to ask for user confirmation
 
 ```powershell
-function New-Something
-{
+function New-Something {
     [CmdletBinding(
         SupportsShouldProcess,
         ConfirmImpact='Low'
     )]
     param($InputObject)
 
-    if ($PSCmdlet.ShouldProcess($InputObject))
-    {
+    if ($PSCmdlet.ShouldProcess($InputObject)) {
         'do it'
     }
 }
@@ -202,8 +195,7 @@ $Code = {
         [string]$Path
     )
 
-    if (-not (Test-Path -Path $Path))
-    {
+    if (-not (Test-Path -Path $Path)) {
         throw "Path '$Path' does not exist"
     }
 }
@@ -221,8 +213,7 @@ Parameters can be [created during runtime](https://docs.microsoft.com/en-us/powe
 I recommend to use [`New-DynamicParameter`](https://github.com/beatcracker/Powershell-Misc/blob/master/New-DynamicParameter.ps1):
 
 ```powershell
-function Do-Something
-{
+function Do-Something {
     [CmdletBinding()]
     DynamicParam {
         @(
@@ -244,8 +235,7 @@ function Do-Something
 `New-DynamicParameter` also creates proper variables:
 
 ```powershell
-function Do-Something
-{
+function Do-Something {
     [CmdletBinding()]
     DynamicParam {
         #...

@@ -21,10 +21,8 @@ Get-ChildItem |
 
 # this is good
 $FilesTop10 = Get-ChildItem | Select-Object -First 10
-foreach ($File in $FilesTop10)
-{
-    if ($File.FullName -like '*.exe')
-    {
+foreach ($File in $FilesTop10) {
+    if ($File.FullName -like '*.exe') {
         $File.FullName
     }
 }

@@ -23,16 +23,15 @@ Get-ChildItem | Remove-Item
 ## Pipelines with functions (1)
 
 ```powershell
-function Do-Something
-{
+function Do-Something {
     [CmdletBinding()]
     param(
         [Parameter(ValueFromPipeline)]
         [string[]]
         $InputObject
     )
-    process
-    {
+
+    process {
         "InputObject: $InputObject"
     }
 }
@@ -59,8 +58,7 @@ InputObject: c
 Loop through `$InputObject`:
 
 ```powershell
-$InputObject | ForEach-Object
-{
+$InputObject | ForEach-Object {
     "item: $_"
 }
 ```
@@ -74,8 +72,7 @@ $InputObject | ForEach-Object
 Instead of using two [parameter sets](#/parameter_sets), extract the parameter from an object on the [pipeline](#/pipelines):
 
 ```powershell
-function Do-Something
-{
+function Do-Something {
     [CmdletBinding()]
     param(
         [Parameter(Mandatory,
@@ -97,8 +94,7 @@ function Do-Something
 Access a different property by parameter aliases
 
 ```powershell
-function Do-Something
-{
+function Do-Something {
     [CmdletBinding()]
     param(
         [Parameter(Mandatory,

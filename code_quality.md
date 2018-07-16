@@ -18,8 +18,7 @@ The [PSScriptAnalyzer]() checks code for typical mistakes:
 
 ```powershell
 PS> Get-Content -Path .\New-Credential.ps1
-function New-Credential
-{
+function New-Credential {
     param($User, $Pass)
     $SPass = ConvertTo-SecureString $Pass -AsPlainText -Force
     New-Object PSCredential -ArgumentList $User, $SecPass
@@ -42,8 +41,7 @@ Also see the [official documentation](https://github.com/PowerShell/PSScriptAnal
 Suppressing issues:
 
 ```powershell
-function New-Credential
-{
+function New-Credential {
     [Diagnostics.CodeAnalysis.SuppressMessageAttribute(
         'PSUseShouldProcessForStateChangingFunctions',
         '',
