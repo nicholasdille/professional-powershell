@@ -1,0 +1,20 @@
+version: '{build}'
+branches:
+  only:
+  - master
+max_jobs: 1
+image: Ubuntu
+clone_depth: 1
+clone_folder: /home/appveyor/projects/professional-powershell
+environment:
+  sftphost:
+    secure: K+IBdbzrGeOB6TrWoKfjH7daOWKHdi1NC29EQpFWM6Q=
+  sftpuser:
+    secure: ohsHTmnC9yFEISEZZxbjCA==
+  sftppass:
+    secure: IYfz8DMZk78p0+8a17iCfol2qbi7HWFsHM+b8/iaTx8=
+deploy_script:
+- sh: >-
+    pwd
+    echo -e "cd www\nmkdir professional-powershell\ncd professional-powershell\nput -r ." > sftp
+    /home/appveyor/projects/passh/passh -p $sftppass bash -c "sftp -o BatchMode=no -o StrictHostKeyChecking=no -b sftp $sftpuser@$sftphost"
