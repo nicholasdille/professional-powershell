@@ -43,3 +43,15 @@ Use [advanced functions](#/advanced_functions)
 Add [comment based help](#/get_help)
 
 Use the [pipeline](#/pipelines)
+
+--
+
+<!-- .slide: id="linux" -->
+
+## Advantages over Linux
+
+PowerShell offers some unique examples over traditional Linux shells:
+
+- Solves tool diversity by using .NET Core
+- Solves naming disaster
+- Solves help disaster
