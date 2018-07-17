@@ -12,6 +12,8 @@ Added [`Out-GridView`](#/gridview)
 
 Added [automatic elevation](#/elevation)
 
+Added [password handling](#/passwords)
+
 --
 
 ## Changelog: 2018-03-13

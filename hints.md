@@ -470,3 +470,27 @@ if (-not $myWindowsPrincipal.IsInRole([WindowsBuiltInRole]::Administrator)) {
 
 # Run your code that needs to be elevated here
 ```
+
+--
+
+<!-- .slide: id="passwords" -->
+
+## Hints: Handling passwords
+
+Use `SecureString` for passwords
+
+Read password on console
+
+```powershell
+Read-Host -AsSecureString
+```
+
+Convert string:
+
+```powershell
+ConvertTo-SecureString -String 'abc' -AsSecureString -Force
+```
+
+Declare parameters for passwords as `SecureString`
+
+`PSScriptAnalyzer` considers plaintext passwords to be bad style
