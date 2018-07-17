@@ -70,24 +70,6 @@ $Data = New-Object -TypeName System.Collections.ArrayList
 
 --
 
-<!-- .slide: id="hashtable_performance" -->
-
-## Caveats: Performance of hashtables
-
-For large hashtables use `System.Collections.Hashtable`:
-
-```powershell
-# slow
-$Data = @{}
-1..1mb | ForEach-Object { $Data[$_] = $_ }
-
-# fast
-$Data = New-Object -TypeName System.Collections.Hashtable
-1..1mb | ForEach-Object { $Data[$_] = $_ }
-```
-
---
-
 <!-- .slide: id="parameter_prompt" -->
 
 ## Caveats: Avoid parameter prompts
